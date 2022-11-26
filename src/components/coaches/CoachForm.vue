@@ -37,6 +37,7 @@
 
 <script>
 export default {
+  emits: ['newCoachData'],
   data() {
     return {
       firstname: '',
@@ -55,7 +56,7 @@ export default {
         rate: this.rate,
         areas: this.areas,
       };
-      console.log(newCoach);
+      this.$emit('newCoachData', newCoach);
     },
   },
 };
