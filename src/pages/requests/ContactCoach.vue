@@ -11,6 +11,9 @@
     <div class="actions">
       <base-button>Send Message</base-button>
     </div>
+    <p class="errors" v-if="!formIsValid">
+      Please enter a valid email and non-empty message.
+    </p>
   </form>
 </template>
 
@@ -34,6 +37,12 @@ export default {
         this.formIsValid = false;
         return;
       }
+      this.$store.dispatch('requests/contactCoach', {
+        coachId: this.$route.params.coachId,
+        email: this.email,
+        message: this.message,
+      });
+      this.$router.replace('/coaches');
     },
   },
 };
