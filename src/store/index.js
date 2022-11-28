@@ -10,12 +10,12 @@ const store = createStore({
   },
   state() {
     return {
-      coachId: 'c3',
+      userId: 'c3',
     };
   },
   getters: {
-    coachId(state) {
-      return state.coachId;
+    userId(state) {
+      return state.userId;
     },
   },
 });

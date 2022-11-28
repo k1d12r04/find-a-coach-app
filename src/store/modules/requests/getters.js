@@ -1,6 +1,6 @@
 export default {
   requests(state, _, _2, rootGetters) {
-    const coachId = rootGetters.coachId;
+    const coachId = rootGetters.userId;
     console.log(state.requests);
     return state.requests.filter((req) => req.coachId === coachId);
   },
