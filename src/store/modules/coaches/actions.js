@@ -10,7 +10,7 @@ export default {
     };
 
     const response = await fetch(
-      `https://find-a-coach-4a9f4-default-rtdb.europe-west1.firebasedatabase.app/${userId}.json`,
+      `https://find-a-coach-4a9f4-default-rtdb.europe-west1.firebasedatabase.app/coaches/${userId}.json`,
       {
         method: 'PUT',
         body: JSON.stringify(newCoach),
@@ -31,13 +31,15 @@ export default {
 
   async loadCoaches(context) {
     const response = await fetch(
-      'https://find-a-coach-4a9f4-default-rtdb.europe-west1.firebasedatabase.app/.json'
+      'https://find-a-coach-4a9f4-default-rtdb.europe-west1.firebasedatabase.app/coaches.json'
     );
-    if (!response.ok) {
-      // error message
-    }
 
     const responseData = await response.json();
+    if (!response.ok) {
+      const error = new Error(responseData.message || 'Could not fetch data');
+
+      throw error;
+    }
 
     const coaches = [];
 
