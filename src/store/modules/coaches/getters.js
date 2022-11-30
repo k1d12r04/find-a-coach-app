@@ -7,7 +7,7 @@ export default {
   },
   isCoach(_, getters, _2, rootGetters) {
     const coaches = getters.coaches;
-    const coachId = rootGetters.coachId;
-    return coaches.some((coach) => coach.id === coachId);
+    const userId = rootGetters.userId;
+    return coaches.some((coach) => coach.id === userId);
   },
 };

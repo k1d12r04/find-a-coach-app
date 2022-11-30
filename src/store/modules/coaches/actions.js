@@ -36,6 +36,7 @@ export default {
     if (!response.ok) {
       // error message
     }
+
     const responseData = await response.json();
 
     const coaches = [];
