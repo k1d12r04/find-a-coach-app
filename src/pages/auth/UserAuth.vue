@@ -8,12 +8,12 @@
         </div>
         <div class="form-control">
           <label for="password">Password</label>
-          <input type="text" id="password" v-model.trim="password" />
+          <input type="password" id="password" v-model.trim="password" />
         </div>
         <p v-if="!formIsValid">
           Please enter a valid email and at least 6 characters in the password
         </p>
-        <base-button>{{ modeButtonCaption }}</base-button>
+        <base-button>{{ submitButtonCaption }}</base-button>
         <base-button type="button" mode="flat" @click="switchAuthMode">{{
           switchModeButtonCaption
         }}</base-button>
@@ -33,7 +33,7 @@ export default {
     };
   },
   computed: {
-    modeButtonCaption() {
+    submitButtonCaption() {
       if (this.mode === 'login') {
         return 'Login';
       } else {
@@ -51,12 +51,23 @@ export default {
   methods: {
     submitForm() {
       this.formIsValid = true;
-      if (this.email === '' || !this.email.includes('@') || this.password < 6) {
+      if (
+        this.email === '' ||
+        !this.email.includes('@') ||
+        this.password.length < 6
+      ) {
         this.formIsValid = false;
         return;
       }
 
-      // send http request
+      if (this.mode === 'login') {
+        // login action
+      } else {
+        this.$store.dispatch('signup', {
+          email: this.email,
+          password: this.password,
+        });
+      }
     },
     switchAuthMode() {
       if (this.mode === 'login') {
