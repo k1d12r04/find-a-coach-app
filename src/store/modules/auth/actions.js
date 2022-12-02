@@ -17,7 +17,7 @@ export default {
 
     if (!response.ok) {
       console.log(responseData);
-      const error = new Error(responseData.message || "Couldn't sign up");
+      const error = new Error("Couldn't sign up");
       throw error;
     }
     console.log(responseData);
